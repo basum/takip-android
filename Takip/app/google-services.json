@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "958208184010",
+    "firebase_url": "https://takip-d9580.firebaseio.com",
+    "project_id": "takip-d9580",
+    "storage_bucket": "takip-d9580.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958208184010:android:78cec2784056a076",
+        "android_client_info": {
+          "package_name": "com.takip.takip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958208184010-lihb99291r6a5j1nd7j3vc5sglocgaad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.takip.takip",
+            "certificate_hash": "0a342fc53d95bde5bc565350b0e6fe177a20ab99"
+          }
+        },
+        {
+          "client_id": "958208184010-8o08ndk5mhep5f5ucq2hls099nifobdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6KvQ5WFK0PGKLeaAh1udMALPC9GXzK0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958208184010-8o08ndk5mhep5f5ucq2hls099nifobdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
