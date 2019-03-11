@@ -13,4 +13,10 @@
     <string name="error_invalid_password">Sifre cok kisa</string>
     <string name="error_incorrect_password">Sifre yanlis</string>
     <string name="error_field_required">Doldurulmasi gerekiyor</string>
+
+    <!-- Strings related to recycle manager -->
+    <string name="fragment_recycle_manager_recyle_product">Ürün geri dönüş alisi</string>
+    <string name="fragment_recycle_manager_quantity">Adet</string>
+    <string name="fragment_recycle_manager_barcode">Kod</string>
+
 </resources>
