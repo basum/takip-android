@@ -1,14 +1,25 @@
 package com.takip.takip.scenes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.takip.takip.R;
+import com.takip.takip.reader.BarcodeCaptureActivity;
 
 
 /**
@@ -25,9 +36,19 @@ public class RecycleManagerFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final int RC_BARCODE_CAPTURE = 9001;
+    private static final String TAG = "BarcodeMain";
+
+    private CompoundButton autoFocus;
+    private CompoundButton useFlash;
+    private TextView statusMessage;
+    private EditText barcodeValue;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button scanButton;
+    private Context context;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,17 +81,42 @@ public class RecycleManagerFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        this.context = getContext();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycle_manager, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycle_manager, container, false);
+        scanButton = (Button) view.findViewById(R.id.fragment_recycle_manager_bardcode_scan_iv);
+        barcodeValue = view.findViewById(R.id.fragment_recycle_manager_editTextBarcode);
+
+        if (scanButton != null){
+            scanButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context.getApplicationContext(), BarcodeCaptureActivity.class);
+                    intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+                    intent.putExtra(BarcodeCaptureActivity.UseFlash,false);
+
+                    startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                }
+            });
+        }
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onScanPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
@@ -92,6 +138,31 @@ public class RecycleManagerFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RC_BARCODE_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    //statusMessage.setText(R.string.barcode_success);
+                    barcodeValue.setText(barcode.displayValue);
+                    Log.d(TAG, "Barcode read: " + barcode.displayValue);
+                } else {
+                    barcodeValue.setText(R.string.barcode_failure);
+                    Log.d(TAG, "No barcode captured, intent data is null");
+                }
+            } else {
+                barcodeValue.setText(String.format(getString(R.string.barcode_error),
+                        CommonStatusCodes.getStatusCodeString(resultCode)));
+            }
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

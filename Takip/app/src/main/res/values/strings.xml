@@ -19,4 +19,17 @@
     <string name="fragment_recycle_manager_quantity">Adet</string>
     <string name="fragment_recycle_manager_barcode">Kod</string>
 
+
+        <string name="ok">OK</string>
+        <string name="permission_camera_rationale">Algılama için kameraya erişimi gerekiyorn</string>
+        <string name="no_camera_permission">Kamera izni olmadığı için bu uygulama çalıştırılamıyor. Uygulama şimdi kapatilacak.</string>
+        <string name="low_storage_error">Yüz dedektörü bağımlılıkları düşük cihaz depolama nedeniyle olamaz</string>
+        <string name="title_activity_main">Barkod Okuyucu</string>
+        <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+        <string name="read_barcode">Barkod oku</string>
+        <string name="auto_focus">Auto Focus</string>
+        <string name="use_flash">Flaş kullan</string>
+        <string name="barcode_success">Barkod başarıyla okundu</string>
+        <string name="barcode_failure">Okunan barkod yok</string>
+        <string name="barcode_error">"Barkod okunurken hata oluştu: %1$s"</string>
 </resources>

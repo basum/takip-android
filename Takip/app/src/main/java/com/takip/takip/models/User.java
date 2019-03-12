@@ -22,6 +22,9 @@ public class User {
     }
 
     public User(HashMap<String, Object> map) {
+        if (map == null){
+            return;
+        }
         this.id = (String) map.get("id");
 
         long type = (long) map.get("type");
@@ -31,8 +34,10 @@ public class User {
             this.type = UserType.PRODUCER;
         } else if (type == 2) {
             this.type = UserType.RECYCLE_MANAGER;
-        } else {
+        } else if (type == 3) {
             this.type = UserType.SUPPLIER;
+        }else {
+            this.type = UserType.MINISTRY_PROVINCE;
         }
 
     }

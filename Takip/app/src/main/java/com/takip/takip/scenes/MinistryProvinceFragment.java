@@ -10,16 +10,11 @@ import android.view.ViewGroup;
 
 import com.takip.takip.R;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProducerFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ProducerFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by bas on 12.03.19.
  */
-public class ProducerFragment extends Fragment {
+
+public class MinistryProvinceFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,9 +24,9 @@ public class ProducerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private MinistryProvinceFragment.OnFragmentInteractionListener mListener;
 
-    public ProducerFragment() {
+    public MinistryProvinceFragment() {
         // Required empty public constructor
     }
 
@@ -41,11 +36,11 @@ public class ProducerFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProducerFragment.
+     * @return A new instance of fragment MinistryProvinceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProducerFragment newInstance(String param1, String param2) {
-        ProducerFragment fragment = new ProducerFragment();
+    public static MinistryProvinceFragment newInstance(String param1, String param2) {
+        MinistryProvinceFragment fragment = new MinistryProvinceFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +61,7 @@ public class ProducerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_producer, container, false);
+        return inflater.inflate(R.layout.fragment_ministry, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,17 +71,11 @@ public class ProducerFragment extends Fragment {
         }
     }
 
-    public void onScanPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof MinistryProvinceFragment.OnFragmentInteractionListener) {
+            mListener = (MinistryProvinceFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

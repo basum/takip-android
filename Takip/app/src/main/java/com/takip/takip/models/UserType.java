@@ -13,7 +13,8 @@ public enum UserType {
     MINISTRY(0),
     PRODUCER(1),
     RECYCLE_MANAGER(2),
-    SUPPLIER(3);
+    SUPPLIER(3),
+    MINISTRY_PROVINCE(4);
 
     UserType(int i) {
     }
