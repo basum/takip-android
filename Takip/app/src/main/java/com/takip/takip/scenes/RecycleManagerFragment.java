@@ -97,6 +97,8 @@ public class RecycleManagerFragment extends Fragment {
         editTextProductCount = view.findViewById(R.id.editTextProductCount);
 
         scanButton = (Button) view.findViewById(R.id.fragment_recycle_manager_bardcode_scan_iv);
+        buttonDone = (Button) view.findViewById(R.id.fragment_recycle_manager_doneButton);
+
         if (scanButton != null){
             scanButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,12 +112,16 @@ public class RecycleManagerFragment extends Fragment {
             });
         }
 
-        buttonDone = (Button) view.findViewById(R.id.fragment_recycle_manager_doneButton).setOnClickListener(new View.OnClickListener() {
+        buttonDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 performDone();
+
+
             }
         });
+
+
 
         return view;
     }

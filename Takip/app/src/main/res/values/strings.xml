@@ -19,6 +19,33 @@
     <string name="fragment_recycle_manager_quantity">Adet</string>
     <string name="fragment_recycle_manager_barcode">Kod</string>
 
+    <!-- Strings related to producer manager -->
+    <string name="fragment_producer_code">Takip</string>
+    <string name="fragment_producer_quantity">Adet</string>
+    <string name="fragment_producer_barcode">Kod</string>
+    <string name="fragment_producer_add">Ekle</string>
+    <string name="fragment_producer_new_name">Isim</string>
+    <string name="fragment_producer_add_new_product">Urun Ekle</string>
+    <string name="fragment_producer_new_product">Yeni Urun</string>
+    <string name="fragment_producer_add_new_product_button">Yeni Urun Ekle</string>
+    <string name="fragment_producer_info">Siradaki 2 secenekten birisini secin lutfen</string>
+
+
+
+
+    <!-- Strings related to supplier manager -->
+    <string name="fragment_supplier_code">Takip</string>
+    <string name="fragmentsupplier_quantity">Adet</string>
+    <string name="fragment_supplier_barcode">Kod</string>
+    <string name="fragment_supplier_Product_text">Urun Satisi</string>
+    <string name="fragment_supplier_buyer">Alici</string>
+    <string name="fragment_supplier_sell_done_button">Satisi Tamamla</string>
+    <string name="fragment_supplier_product_feedback">Urun Geri Donusum</string>
+    <string name="fragment_supplier_product_add_bertaraf">Bertaraf Ekle</string>
+    <string name="fragment_supplier_product_buy_product">Urun Satin Al</string>
+    <string name="fragment_supplier_product_add_product_to_store_button">Urunleri Depoya Ekle</string>
+    <string name="fragment_supplier_info">Siradaki 3 secenekten birisini secin lutfen</string>
+
 
         <string name="ok">OK</string>
         <string name="permission_camera_rationale">Algılama için kameraya erişimi gerekiyorn</string>
