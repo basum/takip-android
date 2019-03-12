@@ -1,14 +1,18 @@
 package com.takip.takip.scenes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.takip.takip.R;
+import com.takip.takip.reader.BarcodeCaptureActivity;
 
 
 /**
@@ -30,6 +34,15 @@ public class ProducerFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private static final int PR_BARCODE_CAPTURE = 9001;
+
+
+    private EditText barcodeProduct;
+    private EditText editTextProductCount;
+    private EditText editTextProductName;
+    private Button buttonAddNewProduct,buttonProductAdd,scanProductButton;
+    private Context context;
 
     public ProducerFragment() {
         // Required empty public constructor
@@ -60,13 +73,98 @@ public class ProducerFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        this.context = getContext();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_producer, container, false);
+//        return inflater.inflate(R.layout.fragment_producer, container, false);
+        View view = inflater.inflate(R.layout.fragment_producer, container, false);
+
+        barcodeProduct = view.findViewById(R.id.fragment_product_editTextBarcode);
+        editTextProductCount = view.findViewById(R.id.editText_add_product_quantity);
+        editTextProductName = view.findViewById(R.id.editText_new_product_name);
+
+        scanProductButton = view.findViewById(R.id.fragment_product_bardcode_scan_iv);
+        buttonProductAdd = view.findViewById(R.id.producer_btn_add);
+        buttonAddNewProduct = view.findViewById(R.id.fragment_product_doneButton);
+
+
+
+        if (scanProductButton != null){
+            scanProductButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context.getApplicationContext(), BarcodeCaptureActivity.class);
+                    intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+                    intent.putExtra(BarcodeCaptureActivity.UseFlash,false);
+
+                    startActivityForResult(intent, PR_BARCODE_CAPTURE);
+                }
+            });
+        }
+
+        buttonProductAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addProduct();
+            }
+        });
+
+        buttonAddNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNewProduct();
+            }
+        });
+
+
+
+
+
+        return view;
+    }
+
+
+
+    private void addNewProduct() {
+        Integer productCount = null;
+        String producerName ="";
+
+        if (editTextProductCount != null && editTextProductCount.getText() != null && android.text.TextUtils.isDigitsOnly(editTextProductCount.getText())){
+            productCount = Integer.parseInt(editTextProductCount.getText().toString());
+        }
+        if(editTextProductName != null && editTextProductName.getText() != null ){
+            producerName = String.valueOf(editTextProductName.getText());
+        }
+
+        String productCode = null;
+        if (barcodeProduct != null && barcodeProduct.getText() != null){
+            productCode = barcodeProduct.getText().toString();
+        }
+
+        if(productCode != null && productCount != null && !producerName.isEmpty()){
+            //TODO send new productFIREBASE
+        }
+    }
+
+
+    private void addProduct() {
+        Integer productCount = null;
+        if (editTextProductCount != null && editTextProductCount.getText() != null && android.text.TextUtils.isDigitsOnly(editTextProductCount.getText())){
+            productCount = Integer.parseInt(editTextProductCount.getText().toString());
+        }
+
+        String productCode = null;
+        if (barcodeProduct != null && barcodeProduct.getText() != null){
+            productCode = barcodeProduct.getText().toString();
+        }
+
+        if(productCode != null && productCount != null){
+            //TODO FIREBASE
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
