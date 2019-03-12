@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.util.NumberUtils;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.takip.takip.R;
@@ -43,6 +44,8 @@ public class RecycleManagerFragment extends Fragment {
     private CompoundButton useFlash;
     private TextView statusMessage;
     private EditText barcodeValue;
+    private EditText editTextProductCount;
+    private Button buttonDone;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -89,8 +92,12 @@ public class RecycleManagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycle_manager, container, false);
-        scanButton = (Button) view.findViewById(R.id.fragment_recycle_manager_bardcode_scan_iv);
+
         barcodeValue = view.findViewById(R.id.fragment_recycle_manager_editTextBarcode);
+        editTextProductCount = view.findViewById(R.id.editTextProductCount);
+
+        scanButton = (Button) view.findViewById(R.id.fragment_recycle_manager_bardcode_scan_iv);
+        buttonDone = (Button) view.findViewById(R.id.fragment_recycle_manager_doneButton);
 
         if (scanButton != null){
             scanButton.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +112,34 @@ public class RecycleManagerFragment extends Fragment {
             });
         }
 
+        buttonDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                performDone();
+
+
+            }
+        });
+
+
+
         return view;
+    }
+
+    private void performDone() {
+        Integer productCount = null;
+        if (editTextProductCount != null && editTextProductCount.getText() != null && android.text.TextUtils.isDigitsOnly(editTextProductCount.getText())){
+            productCount = Integer.parseInt(editTextProductCount.getText().toString());
+        }
+
+        String productCode = null;
+        if (barcodeValue != null && barcodeValue.getText() != null){
+            productCode = barcodeValue.getText().toString();
+        }
+
+        if(productCode != null && productCount != null){
+            //TODO FIREBASE
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
